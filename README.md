@@ -1,4 +1,31 @@
+# AUTONOMOUS DELIVERY AGENT 
 """
+# description
+A simple Python project that compares BFS, UCS, A*, and Dynamic Replanning in a 2D grid world.
+The environment includes walls, weighted cells, and moving obstacles, making it a neat playground for testing search algorithms.
+
+# Features
+
+GridWorld with static & dynamic obstacles
+
+BFS, UCS, A*, and dynamic replanning strategies
+
+Performance metrics: path cost, runtime, expanded nodes
+
+CSV export + matplotlib plots for quick analysis
+
+
+# Example Use Cases
+
+Learn & visualize classic AI pathfinding algorithms
+
+Test how search strategies behave with moving obstacles
+
+Compare efficiency across different map layouts
+"""
+
+"""
+
 Pathfinding Algorithms in GridWorld
 -----------------------------------
 This script is kind of a sandbox to compare BFS, UCS, A*, and
@@ -19,14 +46,7 @@ import random
 import time
 from collections import deque
 
-# I like pandas/matplotlib for quick analysis
-import pandas as pd
-import matplotlib.pyplot as plt
-
-
-# ==============================================================
 #  ENVIRONMENT: GRID WORLD
-# ==============================================================
 
 class GridWorld:
     def __init__(self, grid, start, goal, dynamic_obstacles=None):
@@ -79,10 +99,7 @@ class GridWorld:
                 new_obs.append((r, c))  # stuck in place
         self.dynamic_obstacles = new_obs
 
-
-# ==============================================================
 #  SEARCH ALGORITHMS
-# ==============================================================
 
 def bfs(world):
     start_time = time.time()
@@ -192,10 +209,7 @@ def dynamic_replan(world):
 
     return metrics("Dynamic Replan", full_path, expanded_total, time.time() - start_time, world)
 
-
-# ==============================================================
 #  UTILITIES
-# ==============================================================
 
 def reconstruct_path(came_from, start, goal):
     if goal not in came_from:
@@ -227,9 +241,7 @@ def metrics(name, path, expanded, runtime, world):
     }
 
 
-# ==============================================================
 #  RESULTS + PLOTS
-# ==============================================================
 
 def analyze_results(all_results, save_csv=True):
     df = pd.DataFrame(all_results)
@@ -246,10 +258,7 @@ def analyze_results(all_results, save_csv=True):
         plt.ylabel(metric)
         plt.show()
 
-
-# ==============================================================
 #  MAIN
-# ==============================================================
 
 if __name__ == "__main__":
     maps = {}
